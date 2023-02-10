@@ -13,7 +13,7 @@ A simple class written in PowerShell to convert a byte array to human-readable f
 
 :pencil: Example
 
-```PowerShell
+```powershell
 # Import CFBytes class
 . .\CFBytes.ps1
 
