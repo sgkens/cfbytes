@@ -12,6 +12,7 @@ A simple class written in PowerShell to convert a byte array to human-readable f
 - `$bytes_in_KB`, `$bytes_in_MB`, `$bytes_in_GB`, `$bytes_in_TB`, `$bytes_in_PB`: Represent the number of bytes in each unit.
 
 :pencil: Example
+
 ```PowerShell
 # Import CFBytes class
 . .\CFBytes.ps1
