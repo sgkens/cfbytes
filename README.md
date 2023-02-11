@@ -5,7 +5,7 @@ Small powershell class to convert bytes
 ```powershell
 # Options
 # ------------------
-# max round deceimmal point
+# max round deceimal point
 [cfbytes]::round = 1
 
 # display "KB|MB|GB|TB|PB"
