@@ -94,12 +94,13 @@ class cfbytes {
     ? Description: Convertes and returns the bytes in a human readable format, auto attached to the unit.
     * @param [int] $bytes The bytes to convert. 
     * @param [string] $unit The unit to convert to.
+    #//TODO: change from if to switch statement
     #>   
     static [string] ConvertAuto( [long]$bytes ) {
         [decimal] $covertedbytes = 0
         [string] $formattedBytes = ""
         
-        if ($bytes -lt [cfbytes]::kylobyte) { 
+        if ($bytes -gt [cfbytes]::kylobyte) { 
             $covertedbytes = [math]::round(($bytes / [cfbytes]::TOKB), [cfbytes]::round);
             $formattedBytes = ($covertedbytes).tostring()
             $formattedBytes = "$formattedBytes KB" 
@@ -137,3 +138,4 @@ class cfbytes {
 # * [cfbytes]::caption = $true
 # * [cfbytes]::convertAuto(170001555344)
 # * [cfbytes]::convert(170001555344, 'mb')
+
