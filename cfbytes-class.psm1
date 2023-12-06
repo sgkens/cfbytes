@@ -38,13 +38,13 @@ class cfbytes {
         switch ($unit) {
 
             'bt' {
-            $covertedbytes = [math]::round(($bytes / [cfbytes]::TOKB), [cfbytes]::round);
-            if ($covertedbytes -eq 0){
-                $formattedBytes = "0.00 KB"
-            }else{
-                $formattedBytes = ($covertedbytes).tostring()
-                $formattedBytes = "$formattedBytes KB"
-            }
+                $covertedbytes = [math]::round(($bytes / [cfbytes]::TOKB), [cfbytes]::round);
+                if ($covertedbytes -eq 0){
+                    $formattedBytes = "0.00 KB"
+                }else{
+                    $formattedBytes = ($covertedbytes).tostring()
+                    $formattedBytes = "$formattedBytes KB"
+                }
             }
             'kb' {
                 $covertedbytes = [math]::round(($bytes / [cfbytes]::TOKB), [cfbytes]::round);
