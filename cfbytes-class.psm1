@@ -13,7 +13,8 @@ class cfbytes {
     # * 1073741824 1 gigabyte
     # * 1099511627776 1 terabyte
     # * 1125899906842624 1 petabyte
-    hidden static [long] $kylobyte = 1024
+    hidden static [int] $byte = 1
+    hidden static [int] $kylobyte = 1024
     hidden static [long] $megabyte = 1048576
     hidden static [long] $gigabyte = 1073741824
     hidden static [long] $terabyte = 1099511627776
@@ -23,7 +24,7 @@ class cfbytes {
     static [string] $TOGB = 1GB;
     static [string] $TOTB = 1TB;
     static [string] $TOPB = 1PB;
-    static [int]    $round = 1 # default is 1 decimal place
+    static [int]    $round = 2 # default is 1 decimal place
     static [switch] $caption = $false # default is false
     <# =====================================================
     ! Function: convert
@@ -35,6 +36,16 @@ class cfbytes {
         [decimal] $covertedbytes = 0
         [string] $formattedBytes = ""
         switch ($unit) {
+
+            'bt' {
+            $covertedbytes = [math]::round(($bytes / [cfbytes]::TOKB), [cfbytes]::round);
+            if ($covertedbytes -eq 0){
+                $formattedBytes = "0.00 KB"
+            }else{
+                $formattedBytes = ($covertedbytes).tostring()
+                $formattedBytes = "$formattedBytes KB"
+            }
+            }
             'kb' {
                 $covertedbytes = [math]::round(($bytes / [cfbytes]::TOKB), [cfbytes]::round);
                 if ([cfbytes]::caption -eq $true) { 
@@ -99,7 +110,15 @@ class cfbytes {
     static [string] ConvertAuto( [long]$bytes ) {
         [decimal] $covertedbytes = 0
         [string] $formattedBytes = ""
-        
+        if ($bytes -gt [cfbytes]::byte) { 
+            $covertedbytes = [math]::round(($bytes / [cfbytes]::TOKB), [cfbytes]::round);
+            if ($covertedbytes -eq 0){
+                $formattedBytes = "0.00 KB"
+            }else{
+                $formattedBytes = ($covertedbytes).tostring()
+                $formattedBytes = "$formattedBytes KB"
+            }
+        }
         if ($bytes -gt [cfbytes]::kylobyte) { 
             $covertedbytes = [math]::round(($bytes / [cfbytes]::TOKB), [cfbytes]::round);
             $formattedBytes = ($covertedbytes).tostring()
